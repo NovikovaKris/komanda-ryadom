@@ -5,8 +5,10 @@ Last updated: 2026-06-09
 ## Project State
 
 - This folder now contains a static web prototype for the Sport Grounds project.
-- Git is not initialized yet. Commit workflows should begin with `git init`
-  when the user wants version control.
+- Git is initialized and connected to
+  `https://github.com/NovikovaKris/komanda-ryadom`.
+- GitHub Pages is enabled at
+  `https://novikovakris.github.io/komanda-ryadom/`.
 - The app helps users find a sport, nearby venue, team/company, and optional
   coach for a selected date and time.
 - The app uses vanilla HTML/CSS/JS with no build step.
@@ -35,7 +37,8 @@ Last updated: 2026-06-09
 
 ## Next Steps
 
-- Preview with `python3 -m http.server 4173`.
+- Preview locally with `python3 -m http.server 4173`.
+- Publish updates with `git push`; GitHub Pages deploys from `main` and `/`.
 - Test geocoding and Overpass results from a browser over localhost.
 - Decide whether to add backend persistence for applications, teams, coaches,
   and paid venue promotion.

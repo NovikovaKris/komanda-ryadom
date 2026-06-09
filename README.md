@@ -16,6 +16,10 @@ python3 -m http.server 4173
 
 Open `http://localhost:4173/`.
 
+## Published Site
+
+GitHub Pages: https://novikovakris.github.io/komanda-ryadom/
+
 ## Real Free APIs
 
 - OpenStreetMap Nominatim: user-triggered geocoding.
@@ -48,4 +52,4 @@ user searches and must not be used for autocomplete or bulk geocoding.
 ## Current State
 
 The prototype is static HTML/CSS/JS. There is no backend, auth, payment,
-booking integration, or real team database yet. Git is not initialized yet.
+booking integration, or real team database yet.
