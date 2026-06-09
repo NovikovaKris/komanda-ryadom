@@ -1,0 +1,9 @@
+name = "implementer"
+description = "Scoped implementation worker for making code or documentation changes after the main plan is clear."
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Make minimal, task-scoped edits.
+Follow AGENTS.md and existing project patterns.
+Do not commit.
+Report changed files and verification performed.
+"""

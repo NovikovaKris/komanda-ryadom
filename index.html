@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Команда рядом - поиск спорта, площадки и людей</title>
+    <meta
+      name="description"
+      content="Быстрый поиск компании, тренера и спортивной площадки рядом с пользователем."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#search">
+        <span class="brand-mark">КР</span>
+        <span>
+          <strong>Команда рядом</strong>
+          <small>спорт, люди, площадка</small>
+        </span>
+      </a>
+      <nav class="topnav" aria-label="Основная навигация">
+        <a href="#search">Поиск</a>
+        <a href="#status">Статус</a>
+        <a href="#partners">Площадкам</a>
+      </nav>
+    </header>
+
+    <main class="app-shell">
+      <section class="left-rail" aria-label="Оформление заявки">
+        <div class="visual-strip">
+          <img src="assets/team-court.png" alt="Люди собираются играть на городской спортивной площадке" />
+        </div>
+
+        <form class="search-panel" id="searchForm">
+          <div class="panel-heading" id="search">
+            <p class="eyebrow">Заявка за минуту</p>
+            <h1>Найдём с кем и где поиграть</h1>
+            <p>
+              Выберите спорт, время и район. Сервис покажет площадки рядом,
+              соберёт группу и подсветит статус поиска для участников.
+            </p>
+          </div>
+
+          <label class="field field-wide">
+            <span>Где искать</span>
+            <div class="inline-control">
+              <input
+                id="locationInput"
+                name="location"
+                type="search"
+                autocomplete="street-address"
+                placeholder="Москва, Парк Горького"
+                value="Москва, Парк Горького"
+              />
+              <button class="button button-ghost" id="geoButton" type="button">GPS</button>
+            </div>
+          </label>
+
+          <div class="field-grid">
+            <label class="field">
+              <span>Вид спорта</span>
+              <select id="sportSelect" name="sport">
+                <option value="any">Любой спорт</option>
+                <option value="soccer">Футбол</option>
+                <option value="basketball">Баскетбол</option>
+                <option value="volleyball">Волейбол</option>
+                <option value="tennis">Теннис</option>
+                <option value="running">Бег</option>
+                <option value="fitness">Фитнес</option>
+                <option value="swimming">Плавание</option>
+                <option value="badminton">Бадминтон</option>
+                <option value="table_tennis">Настольный теннис</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Дата</span>
+              <input id="dateInput" name="date" type="date" />
+            </label>
+
+            <label class="field">
+              <span>Время</span>
+              <input id="timeInput" name="time" type="time" value="19:00" />
+            </label>
+
+            <label class="field">
+              <span>Уровень</span>
+              <select id="levelSelect" name="level">
+                <option value="any">Не важно</option>
+                <option value="beginner">Новичок</option>
+                <option value="middle">Средний</option>
+                <option value="advanced">Сильный</option>
+              </select>
+            </label>
+          </div>
+
+          <fieldset class="segmented" aria-label="Что нужно найти">
+            <legend>Что ищем</legend>
+            <label>
+              <input id="needTeam" type="checkbox" checked />
+              <span>Команда</span>
+            </label>
+            <label>
+              <input id="needVenue" type="checkbox" checked />
+              <span>Площадка</span>
+            </label>
+            <label>
+              <input id="needCoach" type="checkbox" />
+              <span>Тренер</span>
+            </label>
+          </fieldset>
+
+          <label class="field">
+            <span>Размер группы</span>
+            <input id="teamSizeInput" name="teamSize" type="range" min="2" max="14" value="8" />
+            <output id="teamSizeOutput" for="teamSizeInput">8 человек</output>
+          </label>
+
+          <button class="button button-primary" type="submit">Найти варианты</button>
+          <p class="api-line" id="apiLine">
+            Данные площадок: OpenStreetMap через Overpass API. Погода:
+            Open-Meteo. Геокодинг Nominatim запускается только по кнопке поиска,
+            без автодополнения.
+          </p>
+        </form>
+
+        <section class="status-panel" id="status" aria-live="polite">
+          <div class="panel-heading compact">
+            <p class="eyebrow">Статус поиска</p>
+            <h2>Заявка ещё не запущена</h2>
+          </div>
+          <ol class="status-steps" id="statusSteps"></ol>
+          <div class="participant-status" id="participantStatus"></div>
+        </section>
+      </section>
+
+      <section class="workspace" aria-label="Результаты поиска">
+        <div class="map-panel">
+          <div class="map-toolbar">
+            <div>
+              <p class="eyebrow">Карта рядом</p>
+              <h2 id="mapTitle">Выберите район и спорт</h2>
+            </div>
+            <a class="button button-ghost" id="openMapLink" href="https://www.openstreetmap.org" target="_blank" rel="noreferrer">
+              Открыть OSM
+            </a>
+          </div>
+          <iframe
+            id="mapFrame"
+            title="Карта OpenStreetMap"
+            loading="lazy"
+            src="about:blank"
+          ></iframe>
+        </div>
+
+        <div class="results-header">
+          <div>
+            <p class="eyebrow">Подходящие варианты</p>
+            <h2 id="resultsTitle">Пока ждём заявку</h2>
+          </div>
+          <div class="weather-card" id="weatherCard">Погода появится после поиска</div>
+        </div>
+
+        <div class="notice" id="notice">
+          Укажите район или нажмите GPS. После поиска здесь появятся площадки,
+          команды и статус набора.
+        </div>
+
+        <div class="results-list" id="resultsList"></div>
+
+        <section class="partner-panel" id="partners">
+          <div class="panel-heading compact">
+            <p class="eyebrow">Монетизация площадок</p>
+            <h2>Заполнить свободные слоты рекламой</h2>
+            <p>
+              Владелец зала или площадки может добавить слот, который будет
+              показываться выше органических результатов как рекламный вариант.
+            </p>
+          </div>
+          <form class="partner-form" id="partnerForm">
+            <label class="field">
+              <span>Название площадки</span>
+              <input id="partnerName" type="text" placeholder="Арена на набережной" />
+            </label>
+            <label class="field">
+              <span>Свободное время</span>
+              <input id="partnerSlot" type="text" placeholder="Сегодня 20:00-22:00" />
+            </label>
+            <label class="field">
+              <span>Спорт</span>
+              <select id="partnerSport">
+                <option value="any">Любой спорт</option>
+                <option value="soccer">Футбол</option>
+                <option value="basketball">Баскетбол</option>
+                <option value="volleyball">Волейбол</option>
+                <option value="tennis">Теннис</option>
+                <option value="fitness">Фитнес</option>
+              </select>
+            </label>
+            <button class="button button-dark" type="submit">Добавить рекламный слот</button>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Прототип использует публичные бесплатные API без ключей.</span>
+      <span>
+        Данные карты ©
+        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a>.
+        <a href="https://operations.osmfoundation.org/policies/nominatim/" target="_blank" rel="noreferrer">Политика Nominatim</a>.
+      </span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

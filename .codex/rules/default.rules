@@ -1,0 +1,50 @@
+# Project command rules for escalated commands.
+# These rules apply only when Codex asks to run a command outside the sandbox.
+
+prefix_rule(
+    pattern = ["git", "reset", "--hard"],
+    decision = "forbidden",
+    justification = "Destructive reset can discard user work. Inspect the diff and ask for explicit approval instead.",
+    match = [
+        "git reset --hard",
+        "git reset --hard HEAD~1",
+    ],
+)
+
+prefix_rule(
+    pattern = ["git", "clean"],
+    decision = "prompt",
+    justification = "Cleaning can delete untracked user files. Confirm the exact target first.",
+    match = [
+        "git clean -fd",
+        "git clean -fdx",
+    ],
+)
+
+prefix_rule(
+    pattern = ["npm", "install"],
+    decision = "prompt",
+    justification = "Dependency changes should be intentional and reviewable.",
+    match = [
+        "npm install",
+        "npm install react",
+    ],
+)
+
+prefix_rule(
+    pattern = ["pnpm", "add"],
+    decision = "prompt",
+    justification = "Dependency changes should be intentional and reviewable.",
+    match = [
+        "pnpm add react",
+    ],
+)
+
+prefix_rule(
+    pattern = ["yarn", "add"],
+    decision = "prompt",
+    justification = "Dependency changes should be intentional and reviewable.",
+    match = [
+        "yarn add react",
+    ],
+)

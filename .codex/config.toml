@@ -1,0 +1,16 @@
+# Project-scoped Codex config.
+#
+# Keep personal model preferences in ~/.codex/config.toml. This file only
+# captures repo behavior that should travel with the project.
+
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+project_doc_max_bytes = 32768
+
+[features]
+hooks = true
+multi_agent = true
+
+[agents]
+max_threads = 6
+max_depth = 1
