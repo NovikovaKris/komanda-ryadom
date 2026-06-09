@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Команда рядом - поиск спорта, площадки и людей</title>
+    <title>Команда рядом - поиск спортивных игр</title>
     <meta
       name="description"
-      content="Быстрый поиск компании, тренера и спортивной площадки рядом с пользователем."
+      content="Быстрый поиск спортивной игры, команды и чата участников рядом с пользователем."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -16,18 +16,18 @@
         <span class="brand-mark">КР</span>
         <span>
           <strong>Команда рядом</strong>
-          <small>спорт, люди, площадка</small>
+          <small>игры, люди, состав</small>
         </span>
       </a>
       <nav class="topnav" aria-label="Основная навигация">
         <a href="#search">Поиск</a>
         <a href="#status">Статус</a>
-        <a href="#partners">Площадкам</a>
+        <a href="#partners">Организаторам</a>
       </nav>
     </header>
 
     <main class="app-shell">
-      <section class="left-rail" aria-label="Оформление заявки">
+      <section class="left-rail" aria-label="Оформление заявки на игру">
         <div class="visual-strip">
           <img src="assets/team-court.png" alt="Люди собираются играть на городской спортивной площадке" />
         </div>
@@ -35,15 +35,15 @@
         <form class="search-panel" id="searchForm">
           <div class="panel-heading" id="search">
             <p class="eyebrow">Заявка за минуту</p>
-            <h1>Найдём с кем и где поиграть</h1>
+            <h1>Найдём игру, где вас ждут</h1>
             <p>
-              Выберите спорт, время и район. Сервис покажет площадки рядом,
-              соберёт группу и подсветит статус поиска для участников.
+              Выберите спорт, время и район. Сервис покажет готовые игры,
+              сколько людей уже в составе и сколько ещё нужно.
             </p>
           </div>
 
           <label class="field field-wide">
-            <span>Где искать</span>
+            <span>Где удобно играть</span>
             <div class="inline-control">
               <input
                 id="locationInput"
@@ -103,7 +103,7 @@
             </label>
             <label>
               <input id="needVenue" type="checkbox" checked />
-              <span>Площадка</span>
+              <span>Игра</span>
             </label>
             <label>
               <input id="needCoach" type="checkbox" />
@@ -112,16 +112,15 @@
           </fieldset>
 
           <label class="field">
-            <span>Размер группы</span>
+            <span>Желаемый состав</span>
             <input id="teamSizeInput" name="teamSize" type="range" min="2" max="14" value="8" />
             <output id="teamSizeOutput" for="teamSizeInput">8 человек</output>
           </label>
 
-          <button class="button button-primary" type="submit">Найти варианты</button>
+          <button class="button button-primary" type="submit">Найти игры</button>
           <p class="api-line" id="apiLine">
-            Данные площадок: OpenStreetMap через Overpass API. Погода:
-            Open-Meteo. Геокодинг Nominatim запускается только по кнопке поиска,
-            без автодополнения.
+            Сейчас используются моковые игры без backend. Площадка, цена и
+            состав показаны для проверки пользовательского сценария.
           </p>
         </form>
 
@@ -133,17 +132,39 @@
           <ol class="status-steps" id="statusSteps"></ol>
           <div class="participant-status" id="participantStatus"></div>
         </section>
+
+        <section class="contact-panel" id="contactPanel" hidden>
+          <div class="panel-heading compact">
+            <p class="eyebrow">Контакт для чата</p>
+            <h2 id="contactTitle">Куда добавить вас в чат игры</h2>
+            <p id="contactSummary"></p>
+          </div>
+          <form class="telegram-form" id="telegramForm">
+            <label class="field">
+              <span>Telegram</span>
+              <input
+                id="telegramInput"
+                type="text"
+                inputmode="text"
+                autocomplete="username"
+                placeholder="@volley_player"
+              />
+            </label>
+            <button class="button button-dark" type="submit">Сохранить Telegram</button>
+          </form>
+          <p class="form-feedback" id="contactSaved"></p>
+        </section>
       </section>
 
-      <section class="workspace" aria-label="Результаты поиска">
+      <section class="workspace" aria-label="Результаты поиска игр">
         <div class="map-panel">
           <div class="map-toolbar">
             <div>
-              <p class="eyebrow">Карта рядом</p>
+              <p class="eyebrow">Район игры</p>
               <h2 id="mapTitle">Выберите район и спорт</h2>
             </div>
             <a class="button button-ghost" id="openMapLink" href="https://www.openstreetmap.org" target="_blank" rel="noreferrer">
-              Открыть OSM
+              Карта
             </a>
           </div>
           <iframe
@@ -156,35 +177,35 @@
 
         <div class="results-header">
           <div>
-            <p class="eyebrow">Подходящие варианты</p>
+            <p class="eyebrow">Игры рядом</p>
             <h2 id="resultsTitle">Пока ждём заявку</h2>
           </div>
-          <div class="weather-card" id="weatherCard">Погода появится после поиска</div>
+          <div class="weather-card" id="weatherCard">Лучший слот появится после поиска</div>
         </div>
 
         <div class="notice" id="notice">
-          Укажите район или нажмите GPS. После поиска здесь появятся площадки,
-          команды и статус набора.
+          Укажите район или нажмите GPS. После поиска здесь появятся игры,
+          составы и сколько людей ещё нужно.
         </div>
 
         <div class="results-list" id="resultsList"></div>
 
         <section class="partner-panel" id="partners">
           <div class="panel-heading compact">
-            <p class="eyebrow">Монетизация площадок</p>
-            <h2>Заполнить свободные слоты рекламой</h2>
+            <p class="eyebrow">Игры от площадок</p>
+            <h2>Поднять игру в ленте</h2>
             <p>
-              Владелец зала или площадки может добавить слот, который будет
-              показываться выше органических результатов как рекламный вариант.
+              Владелец зала или организатор может добавить моковый слот игры,
+              который будет показываться выше обычных вариантов.
             </p>
           </div>
           <form class="partner-form" id="partnerForm">
             <label class="field">
-              <span>Название площадки</span>
-              <input id="partnerName" type="text" placeholder="Арена на набережной" />
+              <span>Название игры или площадки</span>
+              <input id="partnerName" type="text" placeholder="Волейбол в Арене" />
             </label>
             <label class="field">
-              <span>Свободное время</span>
+              <span>Слот игры</span>
               <input id="partnerSlot" type="text" placeholder="Сегодня 20:00-22:00" />
             </label>
             <label class="field">
@@ -198,18 +219,17 @@
                 <option value="fitness">Фитнес</option>
               </select>
             </label>
-            <button class="button button-dark" type="submit">Добавить рекламный слот</button>
+            <button class="button button-dark" type="submit">Добавить игру</button>
           </form>
         </section>
       </section>
     </main>
 
     <footer class="footer">
-      <span>Прототип использует публичные бесплатные API без ключей.</span>
+      <span>Прототип использует моковые игры без backend.</span>
       <span>
         Данные карты ©
         <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a>.
-        <a href="https://operations.osmfoundation.org/policies/nominatim/" target="_blank" rel="noreferrer">Политика Nominatim</a>.
       </span>
     </footer>
 

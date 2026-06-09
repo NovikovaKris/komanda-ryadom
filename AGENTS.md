@@ -3,12 +3,16 @@
 ## Project
 
 Sport Grounds is a static web prototype for a service that helps people find a
-sports venue, teammates, and optionally a coach when they want to exercise but
-do not have a partner or team.
+sports game, teammates, and optionally a coach when they want to exercise but do
+not have a partner or team.
 
-The business model is venue-side advertising: sports halls and courts can pay to
-promote empty time slots, while users get a fast search flow for sport, date,
-time, nearby venue, team status, and coach status.
+The main interface object is a game, not a venue. A game card should foreground
+sport, date, time, format, current participant count, target count, and how many
+people are still needed. Venue details are secondary.
+
+The business model is venue-side advertising: sports halls and organizers can
+pay to promote game slots, while users get a fast search flow for sport, date,
+time, nearby game, team status, Telegram contact, and coach status.
 
 ## Repository Map
 
@@ -32,10 +36,8 @@ time, nearby venue, team status, and coach status.
 - No package manager or build step.
 - Run locally with `python3 -m http.server 4173` and open
   `http://localhost:4173/`.
-- Real free APIs used in the browser:
-  - Nominatim for user-triggered geocoding.
-  - Overpass API for nearby OpenStreetMap sports facilities.
-  - Open-Meteo for hourly weather around the requested time.
+- Current data is mocked in `app.js`; no backend or external search API is used
+  for games.
 
 ## Start Of Work
 
@@ -57,8 +59,10 @@ re-orient the session.
 - Keep the first screen as the actual search/order interface, not a marketing
   landing page.
 - Preserve the no-build static setup unless the user asks for a fuller stack.
-- Respect public API limits: no autocomplete against Nominatim, keep geocoding
-  user-triggered, and display OpenStreetMap attribution.
+- Preserve the game-first model. Do not regress result cards into a venue
+  directory.
+- After a user joins a game, collect Telegram as the next step. In the current
+  prototype this is local browser state only.
 - Use structured parsers and native tooling when available.
 - Use `rg` for searches and `rg --files` for file listing.
 - Update `.codex/SNAPSHOT.md` when project state, open decisions, test status,

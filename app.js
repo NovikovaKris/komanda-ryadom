@@ -1,54 +1,14 @@
 const SPORT_OPTIONS = {
-  any: {
-    label: "Любой спорт",
-    osm: [],
-    groupName: "смешанная тренировка",
-  },
-  soccer: {
-    label: "Футбол",
-    osm: ["soccer", "football", "futsal"],
-    groupName: "футбольная команда",
-  },
-  basketball: {
-    label: "Баскетбол",
-    osm: ["basketball"],
-    groupName: "баскетбольная пятёрка",
-  },
-  volleyball: {
-    label: "Волейбол",
-    osm: ["volleyball", "beachvolleyball"],
-    groupName: "волейбольная команда",
-  },
-  tennis: {
-    label: "Теннис",
-    osm: ["tennis"],
-    groupName: "пара на корт",
-  },
-  running: {
-    label: "Бег",
-    osm: ["running", "athletics"],
-    groupName: "беговая группа",
-  },
-  fitness: {
-    label: "Фитнес",
-    osm: ["fitness", "gymnastics", "exercise"],
-    groupName: "группа фитнеса",
-  },
-  swimming: {
-    label: "Плавание",
-    osm: ["swimming"],
-    groupName: "дорожка в бассейне",
-  },
-  badminton: {
-    label: "Бадминтон",
-    osm: ["badminton"],
-    groupName: "игровая пара",
-  },
-  table_tennis: {
-    label: "Настольный теннис",
-    osm: ["table_tennis"],
-    groupName: "пара у стола",
-  },
+  any: { label: "Любой спорт", groupName: "игра" },
+  soccer: { label: "Футбол", groupName: "футбольная игра" },
+  basketball: { label: "Баскетбол", groupName: "баскетбольная игра" },
+  volleyball: { label: "Волейбол", groupName: "волейбольная игра" },
+  tennis: { label: "Теннис", groupName: "теннисная встреча" },
+  running: { label: "Бег", groupName: "беговая группа" },
+  fitness: { label: "Фитнес", groupName: "фитнес-тренировка" },
+  swimming: { label: "Плавание", groupName: "заплыв" },
+  badminton: { label: "Бадминтон", groupName: "игра в бадминтон" },
+  table_tennis: { label: "Настольный теннис", groupName: "игра в настольный теннис" },
 };
 
 const LEVEL_LABELS = {
@@ -75,12 +35,135 @@ const SAMPLE_NAMES = [
   "Юля",
 ];
 
-const COACHES = [
-  "Алексей К.",
-  "Марина С.",
-  "Игорь В.",
-  "Елена П.",
-  "Никита Р.",
+const MOCK_GAMES = [
+  {
+    id: "volley-park-1900",
+    sport: "volleyball",
+    title: "Волейбол 6x6, нужен доигровщик",
+    format: "6x6 зал",
+    dateOffset: 1,
+    time: "19:00",
+    duration: "90 мин",
+    level: "middle",
+    target: 12,
+    joined: 9,
+    price: 450,
+    venue: "Спортзал на Крымском Валу",
+    district: "Парк Горького",
+    address: "Крымский Вал, 9",
+    lat: 55.7299,
+    lon: 37.6033,
+    sponsored: true,
+  },
+  {
+    id: "volley-yard-2030",
+    sport: "volleyball",
+    title: "Вечерний микс 4x4",
+    format: "4x4 улица",
+    dateOffset: 1,
+    time: "20:30",
+    duration: "75 мин",
+    level: "beginner",
+    target: 8,
+    joined: 6,
+    price: 0,
+    venue: "Площадка Нескучный сад",
+    district: "Нескучный сад",
+    address: "Ленинский проспект, 30",
+    lat: 55.7203,
+    lon: 37.5865,
+  },
+  {
+    id: "volley-arena-1830",
+    sport: "volleyball",
+    title: "Средний плюс, игра до двух партий",
+    format: "6x6 зал",
+    dateOffset: 2,
+    time: "18:30",
+    duration: "2 часа",
+    level: "advanced",
+    target: 12,
+    joined: 10,
+    price: 650,
+    venue: "Арена Якиманка",
+    district: "Якиманка",
+    address: "ул. Большая Якиманка, 22",
+    lat: 55.7377,
+    lon: 37.6123,
+  },
+  {
+    id: "basket-park-2000",
+    sport: "basketball",
+    title: "Баскетбол 5x5, не хватает двоих",
+    format: "5x5",
+    dateOffset: 1,
+    time: "20:00",
+    duration: "90 мин",
+    level: "middle",
+    target: 10,
+    joined: 8,
+    price: 300,
+    venue: "Площадка Музеон",
+    district: "Якиманка",
+    address: "Крымская набережная",
+    lat: 55.7351,
+    lon: 37.6052,
+  },
+  {
+    id: "soccer-luzh-2100",
+    sport: "soccer",
+    title: "Футбол 7x7, сборная команда",
+    format: "7x7",
+    dateOffset: 1,
+    time: "21:00",
+    duration: "1 час",
+    level: "any",
+    target: 14,
+    joined: 11,
+    price: 550,
+    venue: "Манеж Лужники",
+    district: "Лужники",
+    address: "Лужнецкая наб., 24",
+    lat: 55.7158,
+    lon: 37.5537,
+    sponsored: true,
+  },
+  {
+    id: "tennis-park-1100",
+    sport: "tennis",
+    title: "Теннис, ищем второго игрока",
+    format: "одиночная игра",
+    dateOffset: 2,
+    time: "11:00",
+    duration: "1 час",
+    level: "beginner",
+    target: 2,
+    joined: 1,
+    price: 900,
+    venue: "Корт у парка",
+    district: "Парк Горького",
+    address: "Пушкинская набережная",
+    lat: 55.7271,
+    lon: 37.6002,
+  },
+  {
+    id: "fitness-morning-0800",
+    sport: "fitness",
+    title: "Функциональная тренировка в мини-группе",
+    format: "группа с тренером",
+    dateOffset: 1,
+    time: "08:00",
+    duration: "55 мин",
+    level: "any",
+    target: 8,
+    joined: 5,
+    price: 700,
+    venue: "Студия движения",
+    district: "Октябрьская",
+    address: "ул. Житная, 14",
+    lat: 55.7315,
+    lon: 37.616,
+  },
 ];
 
 const DEFAULT_LOCATION = {
@@ -89,19 +172,15 @@ const DEFAULT_LOCATION = {
   lon: 37.6033,
 };
 
-const NOMINATIM_URL = "https://nominatim.openstreetmap.org/search";
-const OVERPASS_URL = "https://overpass-api.de/api/interpreter";
-const OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast";
-const STORAGE_KEY = "sport-nearby-state-v1";
+const STORAGE_KEY = "sport-games-state-v1";
 
 const state = {
   request: null,
-  location: null,
-  manualCoords: null,
-  venues: [],
-  selectedVenueId: null,
-  weather: null,
-  noticeMode: "",
+  location: DEFAULT_LOCATION,
+  games: [],
+  selectedGameId: null,
+  telegram: "",
+  partnerGames: [],
 };
 
 const elements = {};
@@ -129,9 +208,14 @@ function cacheElements() {
   elements.needCoach = document.querySelector("#needCoach");
   elements.teamSizeInput = document.querySelector("#teamSizeInput");
   elements.teamSizeOutput = document.querySelector("#teamSizeOutput");
-  elements.apiLine = document.querySelector("#apiLine");
   elements.statusSteps = document.querySelector("#statusSteps");
   elements.participantStatus = document.querySelector("#participantStatus");
+  elements.contactPanel = document.querySelector("#contactPanel");
+  elements.contactTitle = document.querySelector("#contactTitle");
+  elements.contactSummary = document.querySelector("#contactSummary");
+  elements.telegramForm = document.querySelector("#telegramForm");
+  elements.telegramInput = document.querySelector("#telegramInput");
+  elements.contactSaved = document.querySelector("#contactSaved");
   elements.mapTitle = document.querySelector("#mapTitle");
   elements.mapFrame = document.querySelector("#mapFrame");
   elements.openMapLink = document.querySelector("#openMapLink");
@@ -147,15 +231,13 @@ function cacheElements() {
 
 function bindEvents() {
   elements.form.addEventListener("submit", handleSearch);
-  elements.geoButton.addEventListener("click", useBrowserLocation);
-  elements.locationInput.addEventListener("input", () => {
-    state.manualCoords = null;
-  });
+  elements.geoButton.addEventListener("click", useMockLocation);
   elements.teamSizeInput.addEventListener("input", () => {
     elements.teamSizeOutput.value = formatPeople(Number(elements.teamSizeInput.value));
   });
   elements.resultsList.addEventListener("click", handleResultClick);
-  elements.partnerForm.addEventListener("submit", handlePartnerSlot);
+  elements.telegramForm.addEventListener("submit", handleTelegramSubmit);
+  elements.partnerForm.addEventListener("submit", handlePartnerGame);
 }
 
 function setDefaultDate() {
@@ -164,19 +246,18 @@ function setDefaultDate() {
   const value = toDateInputValue(tomorrow);
   elements.dateInput.value = value;
   elements.dateInput.min = toDateInputValue(new Date());
+  elements.sportSelect.value = "volleyball";
+  elements.teamSizeInput.value = "12";
 }
 
 function restoreState() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-    if (saved.partnerSlots) {
-      state.partnerSlots = saved.partnerSlots;
-    }
+    state.partnerGames = Array.isArray(saved.partnerGames) ? saved.partnerGames : [];
+    state.telegram = saved.telegram || "";
   } catch {
-    state.partnerSlots = [];
-  }
-  if (!Array.isArray(state.partnerSlots)) {
-    state.partnerSlots = [];
+    state.partnerGames = [];
+    state.telegram = "";
   }
 }
 
@@ -184,8 +265,8 @@ function persistState() {
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify({
-      partnerSlots: state.partnerSlots,
-      selectedVenueId: state.selectedVenueId,
+      partnerGames: state.partnerGames,
+      telegram: state.telegram,
     }),
   );
 }
@@ -193,68 +274,32 @@ function persistState() {
 function renderInitial() {
   elements.teamSizeOutput.value = formatPeople(Number(elements.teamSizeInput.value));
   updateMap(DEFAULT_LOCATION);
+  state.games = buildMockGames(collectRequest(), DEFAULT_LOCATION).slice(0, 4);
+  renderResults();
   renderStatus();
-  renderPartnerSlotsOnly();
+  renderContactPanel();
+  setNotice("Выберите игру из моковой ленты или уточните спорт, дату и время.", "");
 }
 
-async function handleSearch(event) {
+function handleSearch(event) {
   event.preventDefault();
   const request = collectRequest();
+  const location = resolveMockLocation(request.location);
   state.request = request;
-  state.selectedVenueId = null;
-  setLoading(true);
-  setNotice("Ищем координаты, площадки и погодные условия...", "");
+  state.location = location;
+  state.selectedGameId = null;
+  state.games = buildMockGames(request, location);
+
+  updateMap(location);
+  renderResults();
+  renderWeather();
   renderStatus();
+  renderContactPanel();
 
-  try {
-    const location = state.manualCoords || (await geocodeLocation(request.location));
-    state.location = location;
-    updateMap(location);
-
-    const [venueResult, weather] = await Promise.all([
-      fetchSportsVenues(location, request),
-      fetchWeather(location, request),
-    ]);
-
-    state.weather = weather;
-    state.venues = enrichVenues(venueResult.venues, request, location, venueResult.source);
-    state.venues = mergePartnerSlots(state.venues, request, location);
-
-    if (!state.venues.length) {
-      state.venues = enrichVenues(makeFallbackVenues(location), request, location, "demo");
-      setNotice(
-        "В OpenStreetMap рядом не нашлось подходящих объектов. Показаны демо-варианты около выбранной точки, чтобы можно было оценить сценарий.",
-        "is-error",
-      );
-    } else if (venueResult.source === "api") {
-      setNotice(
-        `Найдено ${state.venues.length} вариантов рядом. Органические площадки пришли из OpenStreetMap через Overpass API.`,
-        "is-success",
-      );
-    } else {
-      setNotice(
-        "Публичный API сейчас не ответил. Показаны демо-варианты около выбранной точки, рекламные слоты остались локальными.",
-        "is-error",
-      );
-    }
-
-    renderResults();
-    renderWeather();
-    renderStatus();
-  } catch (error) {
-    state.venues = enrichVenues(makeFallbackVenues(DEFAULT_LOCATION), request, DEFAULT_LOCATION, "demo");
-    state.weather = null;
-    updateMap(DEFAULT_LOCATION);
-    setNotice(
-      `Не удалось получить данные API: ${error.message}. Показан демо-сценарий, чтобы интерфейс оставался рабочим.`,
-      "is-error",
-    );
-    renderResults();
-    renderWeather();
-    renderStatus();
-  } finally {
-    setLoading(false);
-  }
+  setNotice(
+    `Подобрали ${state.games.length} игр. Это моковые данные: можно проверить сценарий без backend и реальных заявок.`,
+    "is-success",
+  );
 }
 
 function collectRequest() {
@@ -274,314 +319,112 @@ function collectRequest() {
   };
 }
 
-async function useBrowserLocation() {
-  if (!navigator.geolocation) {
-    setNotice("Браузер не поддерживает геолокацию. Введите адрес или район вручную.", "is-error");
-    return;
-  }
-
-  elements.geoButton.disabled = true;
-  elements.geoButton.textContent = "Ждём";
-  setNotice("Запрашиваем разрешение на геолокацию...", "");
-
-  try {
-    const position = await new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject, {
-        enableHighAccuracy: true,
-        timeout: 9000,
-        maximumAge: 120000,
-      });
-    });
-    state.manualCoords = {
-      label: "Моё местоположение",
-      lat: position.coords.latitude,
-      lon: position.coords.longitude,
-    };
-    elements.locationInput.value = "Моё местоположение";
-    updateMap(state.manualCoords);
-    setNotice("Геолокация получена. Теперь нажмите «Найти варианты».", "is-success");
-  } catch {
-    setNotice("Не удалось получить геолокацию. Введите город, район или адрес вручную.", "is-error");
-  } finally {
-    elements.geoButton.disabled = false;
-    elements.geoButton.textContent = "GPS";
-  }
+function useMockLocation() {
+  elements.locationInput.value = "Москва, рядом со мной";
+  state.location = {
+    label: "Москва, рядом со мной",
+    lat: 55.7299,
+    lon: 37.6033,
+  };
+  updateMap(state.location);
+  setNotice("В прототипе GPS имитируется моковой точкой около Парка Горького.", "is-success");
 }
 
-async function geocodeLocation(query) {
-  if (query.toLowerCase() === "моё местоположение" && state.manualCoords) {
-    return state.manualCoords;
+function resolveMockLocation(value) {
+  const text = value.toLowerCase();
+  if (text.includes("луж")) {
+    return { label: value, lat: 55.7158, lon: 37.5537 };
+  }
+  if (text.includes("октя")) {
+    return { label: value, lat: 55.7312, lon: 37.6128 };
+  }
+  return { label: value || DEFAULT_LOCATION.label, lat: DEFAULT_LOCATION.lat, lon: DEFAULT_LOCATION.lon };
+}
+
+function buildMockGames(request, location) {
+  const baseDate = parseDateInput(request.date);
+  const games = [...state.partnerGames, ...MOCK_GAMES]
+    .filter((game) => request.sport === "any" || game.sport === request.sport)
+    .filter((game) => request.level === "any" || game.level === "any" || game.level === request.level)
+    .map((game, index) => hydrateGame(game, request, location, baseDate, index))
+    .filter((game) => isCloseEnough(game, request))
+    .sort((a, b) => {
+      if (a.missing !== b.missing) return a.missing - b.missing;
+      if (a.sponsored !== b.sponsored) return a.sponsored ? -1 : 1;
+      return a.distance - b.distance;
+    });
+
+  if (games.length) {
+    return games;
   }
 
-  const url = new URL(NOMINATIM_URL);
-  url.search = new URLSearchParams({
-    q: query,
-    format: "jsonv2",
-    limit: "1",
-    addressdetails: "1",
-    "accept-language": "ru",
-  }).toString();
+  return makeFallbackGames(request, location, baseDate);
+}
 
-  const response = await fetch(url.toString(), {
-    headers: {
-      Accept: "application/json",
+function hydrateGame(game, request, location, baseDate, index) {
+  const date = new Date(baseDate);
+  date.setDate(date.getDate() + Number(game.dateOffset || 0));
+  const target = Math.max(game.target, request.teamSize > 2 ? Math.min(request.teamSize, game.target) : game.target);
+  const joined = Math.min(target - 1, game.joined);
+  const distance = distanceMeters(location.lat, location.lon, game.lat, game.lon);
+
+  return {
+    ...game,
+    id: game.id || `partner-${index}`,
+    date: toDateInputValue(date),
+    dateLabel: formatShortDate(date),
+    target,
+    joined,
+    missing: Math.max(0, target - joined),
+    participants: makeParticipants(joined, index),
+    distance,
+    score: calculateGameScore(game, request, distance),
+    source: game.sponsored ? "ad" : "mock",
+    coachName: request.needCoach ? ["Алексей К.", "Марина С.", "Елена П."][index % 3] : null,
+  };
+}
+
+function isCloseEnough(game, request) {
+  if (request.time === game.time) {
+    return true;
+  }
+  const requested = toMinutes(request.time);
+  const actual = toMinutes(game.time);
+  return Math.abs(requested - actual) <= 180;
+}
+
+function makeFallbackGames(request, location, baseDate) {
+  const sport = request.sport === "any" ? "volleyball" : request.sport;
+  return [
+    {
+      id: "fallback-game-1",
+      sport,
+      title: `${SPORT_OPTIONS[sport].label}: собираем игру под ваш слот`,
+      format: request.sport === "volleyball" ? "6x6 зал" : "игра по заявке",
+      dateOffset: 0,
+      time: request.time,
+      duration: "90 мин",
+      level: request.level,
+      target: request.teamSize,
+      joined: Math.max(1, request.teamSize - 4),
+      price: 0,
+      venue: "Площадка уточняется",
+      district: location.label,
+      address: "После набора покажем 2-3 варианта",
+      lat: location.lat,
+      lon: location.lon,
     },
-  });
-
-  if (!response.ok) {
-    throw new Error(`Nominatim вернул ${response.status}`);
-  }
-
-  const data = await response.json();
-  if (!data.length) {
-    throw new Error("адрес не найден");
-  }
-
-  return {
-    label: data[0].display_name || query,
-    lat: Number(data[0].lat),
-    lon: Number(data[0].lon),
-  };
+  ].map((game, index) => hydrateGame(game, request, location, baseDate, index));
 }
 
-async function fetchSportsVenues(location, request) {
-  const query = buildOverpassQuery(location, 5200);
-  const body = new URLSearchParams({ data: query });
-  const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), 24000);
-
-  try {
-    const response = await fetch(OVERPASS_URL, {
-      method: "POST",
-      body,
-      signal: controller.signal,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Overpass вернул ${response.status}`);
-    }
-
-    const data = await response.json();
-    const venues = normalizeOverpassElements(data.elements || [], location, request);
-    return { source: "api", venues };
-  } catch (error) {
-    console.warn("Overpass failed", error);
-    return { source: "demo", venues: makeFallbackVenues(location) };
-  } finally {
-    window.clearTimeout(timeout);
-  }
-}
-
-function buildOverpassQuery(location, radius) {
-  return `
-    [out:json][timeout:25];
-    (
-      node(around:${radius},${location.lat},${location.lon})["leisure"~"^(pitch|sports_centre|fitness_centre|stadium|track)$"];
-      way(around:${radius},${location.lat},${location.lon})["leisure"~"^(pitch|sports_centre|fitness_centre|stadium|track)$"];
-      relation(around:${radius},${location.lat},${location.lon})["leisure"~"^(pitch|sports_centre|fitness_centre|stadium|track)$"];
-      node(around:${radius},${location.lat},${location.lon})["sport"];
-      way(around:${radius},${location.lat},${location.lon})["sport"];
-      relation(around:${radius},${location.lat},${location.lon})["sport"];
-    );
-    out center tags 80;
-  `;
-}
-
-function normalizeOverpassElements(elementsList, location, request) {
-  const unique = new Map();
-  for (const item of elementsList) {
-    const tags = item.tags || {};
-    const lat = Number(item.lat || item.center?.lat);
-    const lon = Number(item.lon || item.center?.lon);
-    if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
-      continue;
-    }
-
-    const key = `${item.type}-${item.id}`;
-    if (unique.has(key)) {
-      continue;
-    }
-
-    const venue = {
-      id: key,
-      osmType: item.type,
-      osmId: item.id,
-      source: "api",
-      name: tags.name || fallbackVenueName(tags, request),
-      address: formatAddress(tags),
-      lat,
-      lon,
-      tags,
-      distance: distanceMeters(location.lat, location.lon, lat, lon),
-      sportText: readableSport(tags, request),
-      facilityType: readableFacility(tags),
-      osmUrl: `https://www.openstreetmap.org/${item.type}/${item.id}`,
-    };
-
-    if (matchesSport(venue, request.sport)) {
-      unique.set(key, venue);
-    }
-  }
-
-  return Array.from(unique.values())
-    .sort((a, b) => a.distance - b.distance)
-    .slice(0, 12);
-}
-
-function matchesSport(venue, sportKey) {
-  if (sportKey === "any") {
-    return true;
-  }
-  const tags = venue.tags || {};
-  const sports = String(tags.sport || "")
-    .toLowerCase()
-    .split(/[;,]/)
-    .map((item) => item.trim())
-    .filter(Boolean);
-  const expected = SPORT_OPTIONS[sportKey].osm;
-  if (sports.some((item) => expected.includes(item))) {
-    return true;
-  }
-  if (sportKey === "fitness" && tags.leisure === "fitness_centre") {
-    return true;
-  }
-  if (sportKey === "running" && tags.leisure === "track") {
-    return true;
-  }
-  return tags.leisure === "sports_centre" && sports.length === 0;
-}
-
-async function fetchWeather(location, request) {
-  const url = new URL(OPEN_METEO_URL);
-  url.search = new URLSearchParams({
-    latitude: String(location.lat),
-    longitude: String(location.lon),
-    hourly: "temperature_2m,precipitation_probability,wind_speed_10m",
-    timezone: "auto",
-    forecast_days: "7",
-  }).toString();
-
-  try {
-    const response = await fetch(url.toString());
-    if (!response.ok) {
-      throw new Error(`Open-Meteo вернул ${response.status}`);
-    }
-    const data = await response.json();
-    return pickWeatherHour(data.hourly, request);
-  } catch (error) {
-    console.warn("Open-Meteo failed", error);
-    return null;
-  }
-}
-
-function pickWeatherHour(hourly, request) {
-  if (!hourly?.time?.length) {
-    return null;
-  }
-  const target = new Date(`${request.date}T${request.time || "19:00"}`);
-  let bestIndex = 0;
-  let bestDiff = Number.POSITIVE_INFINITY;
-
-  hourly.time.forEach((time, index) => {
-    const diff = Math.abs(new Date(time).getTime() - target.getTime());
-    if (diff < bestDiff) {
-      bestDiff = diff;
-      bestIndex = index;
-    }
-  });
-
-  return {
-    time: hourly.time[bestIndex],
-    temperature: hourly.temperature_2m?.[bestIndex],
-    precipitation: hourly.precipitation_probability?.[bestIndex],
-    wind: hourly.wind_speed_10m?.[bestIndex],
-  };
-}
-
-function enrichVenues(venues, request, location, source) {
-  return venues
-    .map((venue, index) => {
-      const target = request.needTeam ? request.teamSize : Math.max(2, Math.min(request.teamSize, 4));
-      const joined = Math.min(target - 1, 2 + ((index * 3 + request.teamSize) % Math.max(2, target - 1)));
-      const coachName = request.needCoach ? COACHES[index % COACHES.length] : null;
-      const score = Math.max(62, Math.round(96 - venue.distance / 190 + (venue.source === "ad" ? 8 : 0)));
-      return {
-        ...venue,
-        source: venue.source || source,
-        target,
-        joined,
-        missing: Math.max(0, target - joined),
-        score: Math.min(99, score),
-        coachName,
-        participants: makeParticipants(joined, index),
-        startsAt: `${request.date} ${request.time}`,
-        groupName: SPORT_OPTIONS[request.sport].groupName,
-      };
-    })
-    .sort((a, b) => b.score - a.score || a.distance - b.distance);
-}
-
-function makeParticipants(count, offset) {
-  return Array.from({ length: count }, (_, index) => {
-    const name = SAMPLE_NAMES[(index + offset) % SAMPLE_NAMES.length];
-    return {
-      name,
-      initials: name.slice(0, 1).toUpperCase(),
-    };
-  });
-}
-
-function mergePartnerSlots(venues, request, location) {
-  const matchingSlots = state.partnerSlots
-    .filter((slot) => slot.sport === "any" || request.sport === "any" || slot.sport === request.sport)
-    .map((slot, index) => ({
-      id: slot.id,
-      source: "ad",
-      name: slot.name,
-      address: slot.slot,
-      lat: slot.lat || location.lat + 0.004 + index * 0.001,
-      lon: slot.lon || location.lon + 0.004 - index * 0.001,
-      distance: distanceMeters(location.lat, location.lon, slot.lat || location.lat, slot.lon || location.lon),
-      sportText: SPORT_OPTIONS[slot.sport]?.label || "Любой спорт",
-      facilityType: "Рекламный слот площадки",
-      osmUrl: "https://www.openstreetmap.org",
-      tags: {},
-    }));
-
-  return [...matchingSlots, ...venues].slice(0, 14);
-}
-
-function makeFallbackVenues(location) {
-  const base = [
-    ["Городская спортивная площадка", "открытая площадка"],
-    ["Фитнес-зал у парка", "зал рядом"],
-    ["Мультиспорт-арена", "площадка для командных игр"],
-    ["Школьный стадион", "поле и дорожки"],
-    ["Клуб игровых видов спорта", "зал с тренером"],
-    ["Дворовая площадка", "быстрый сбор команды"],
-  ];
-
-  return base.map(([name, type], index) => {
-    const lat = location.lat + (index - 2) * 0.006;
-    const lon = location.lon + (index % 3 - 1) * 0.008;
-    return {
-      id: `demo-${index}`,
-      source: "demo",
-      name,
-      address: "Демо-вариант около выбранной точки",
-      lat,
-      lon,
-      tags: {},
-      distance: distanceMeters(location.lat, location.lon, lat, lon),
-      sportText: "Спорт по заявке",
-      facilityType: type,
-      osmUrl: "https://www.openstreetmap.org",
-    };
-  });
+function calculateGameScore(game, request, distance) {
+  let score = 72;
+  if (game.sport === request.sport) score += 12;
+  if (game.level === request.level || game.level === "any" || request.level === "any") score += 7;
+  score += Math.max(0, 10 - Math.round(distance / 650));
+  score += Math.max(0, 8 - Math.abs(toMinutes(game.time) - toMinutes(request.time)) / 30);
+  if (game.sponsored) score += 3;
+  return Math.min(99, Math.round(score));
 }
 
 function handleResultClick(event) {
@@ -590,128 +433,155 @@ function handleResultClick(event) {
     return;
   }
 
-  const venue = state.venues.find((item) => item.id === button.dataset.join);
-  if (!venue) {
+  const game = state.games.find((item) => item.id === button.dataset.join);
+  if (!game) {
     return;
   }
 
-  state.selectedVenueId = venue.id;
-  if (!venue.hasUser) {
-    venue.hasUser = true;
-    venue.joined = Math.min(venue.target, venue.joined + 1);
-    venue.missing = Math.max(0, venue.target - venue.joined);
-    venue.participants = [{ name: "Вы", initials: "В" }, ...venue.participants].slice(0, venue.target);
+  state.selectedGameId = game.id;
+  if (!game.hasUser) {
+    game.hasUser = true;
+    game.joined = Math.min(game.target, game.joined + 1);
+    game.missing = Math.max(0, game.target - game.joined);
+    game.participants = [{ name: "Вы", initials: "В" }, ...game.participants].slice(0, game.target);
   }
+
+  setNotice(`Заявка на игру оформлена: ${game.title}. Оставьте Telegram, чтобы вас добавили в чат.`, "is-success");
+  renderResults();
+  renderStatus();
+  renderContactPanel();
+  elements.contactPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function handleTelegramSubmit(event) {
+  event.preventDefault();
+  const value = elements.telegramInput.value.trim();
+  if (!/^@?[a-zA-Z0-9_]{5,32}$/.test(value)) {
+    elements.contactSaved.textContent = "Введите Telegram username, например @volley_player.";
+    elements.contactSaved.className = "form-feedback is-error";
+    return;
+  }
+
+  state.telegram = value.startsWith("@") ? value : `@${value}`;
   persistState();
-  setNotice(`Заявка оформлена: ${venue.name}. Статус участников обновлён.`, "is-success");
+  elements.contactSaved.textContent = `Telegram сохранён: ${state.telegram}. В MVP это локальная имитация заявки.`;
+  elements.contactSaved.className = "form-feedback is-success";
+  renderStatus();
+}
+
+function handlePartnerGame(event) {
+  event.preventDefault();
+  const name = elements.partnerName.value.trim();
+  const slot = elements.partnerSlot.value.trim();
+  const sport = elements.partnerSport.value === "any" ? "volleyball" : elements.partnerSport.value;
+
+  if (!name || !slot) {
+    setNotice("Для рекламной игры нужны название площадки и свободный слот.", "is-error");
+    return;
+  }
+
+  const request = collectRequest();
+  state.partnerGames.unshift({
+    id: `ad-game-${Date.now()}`,
+    sport,
+    title: `${SPORT_OPTIONS[sport].label}: рекламный слот от площадки`,
+    format: sport === "volleyball" ? "6x6 зал" : "игра по слоту",
+    dateOffset: 0,
+    time: parseSlotTime(slot) || request.time,
+    duration: "90 мин",
+    level: "any",
+    target: sport === "volleyball" ? 12 : request.teamSize,
+    joined: sport === "volleyball" ? 8 : Math.max(2, request.teamSize - 3),
+    price: 500,
+    venue: name,
+    district: "рядом с пользователем",
+    address: slot,
+    lat: state.location.lat + 0.003,
+    lon: state.location.lon - 0.003,
+    sponsored: true,
+  });
+  state.partnerGames = state.partnerGames.slice(0, 4);
+  persistState();
+  elements.partnerForm.reset();
+  elements.partnerSport.value = "any";
+  setNotice("Рекламная игра добавлена в моковую ленту и будет показана в поиске.", "is-success");
+
+  state.request = request;
+  state.games = buildMockGames(request, state.location);
   renderResults();
   renderStatus();
 }
 
-function handlePartnerSlot(event) {
-  event.preventDefault();
-  const name = elements.partnerName.value.trim();
-  const slot = elements.partnerSlot.value.trim();
-  const sport = elements.partnerSport.value;
-
-  if (!name || !slot) {
-    setNotice("Для рекламного слота нужны название площадки и свободное время.", "is-error");
-    return;
-  }
-
-  const location = state.location || DEFAULT_LOCATION;
-  state.partnerSlots.unshift({
-    id: `ad-${Date.now()}`,
-    name,
-    slot,
-    sport,
-    lat: location.lat + 0.003,
-    lon: location.lon - 0.003,
-  });
-  state.partnerSlots = state.partnerSlots.slice(0, 4);
-  persistState();
-  elements.partnerForm.reset();
-  elements.partnerSport.value = "any";
-  setNotice("Рекламный слот добавлен локально и будет показан в следующих результатах.", "is-success");
-
-  if (state.request && state.location) {
-    state.venues = mergePartnerSlots(
-      state.venues.filter((item) => item.source !== "ad"),
-      state.request,
-      state.location,
-    );
-    renderResults();
-    renderStatus();
-  }
-}
-
-function renderPartnerSlotsOnly() {
-  if (state.partnerSlots.length && !state.venues.length) {
-    setNotice("Уже есть локальные рекламные слоты. Запустите поиск, чтобы увидеть их среди вариантов.", "");
-  }
-}
-
 function renderResults() {
-  const count = state.venues.length;
+  const count = state.games.length;
   elements.resultsTitle.textContent = count
-    ? `${count} вариантов для заявки`
+    ? `${count} игр под ваш запрос`
     : "Пока ждём заявку";
 
-  elements.resultsList.innerHTML = state.venues.map(renderVenueCard).join("");
+  elements.resultsList.innerHTML = state.games.map(renderGameCard).join("");
 }
 
-function renderVenueCard(venue) {
-  const filled = Math.round((venue.joined / venue.target) * 100);
-  const selected = state.selectedVenueId === venue.id;
-  const sourceBadge = venue.source === "ad"
+function renderGameCard(game) {
+  const filled = Math.round((game.joined / game.target) * 100);
+  const selected = state.selectedGameId === game.id;
+  const sourceBadge = game.source === "ad"
     ? '<span class="badge coral">Реклама площадки</span>'
-    : venue.source === "api"
-      ? '<span class="badge green">OpenStreetMap</span>'
-      : '<span class="badge">Демо</span>';
-  const coach = state.request?.needCoach
-    ? `<span class="badge blue">Тренер: ${escapeHtml(venue.coachName || "ищем")}</span>`
+    : '<span class="badge green">Моковая игра</span>';
+  const missingText = game.missing === 0
+    ? "состав готов"
+    : `нужно ещё ${formatPeople(game.missing).toLowerCase()}`;
+  const coach = game.coachName
+    ? `<span class="badge blue">Тренер: ${escapeHtml(game.coachName)}</span>`
     : "";
-  const missingText = venue.missing === 0
-    ? "группа готова"
-    : `нужно ещё ${formatPeople(venue.missing).toLowerCase()}`;
 
   return `
-    <article class="venue-card ${venue.source === "ad" ? "is-sponsored" : ""}">
-      <div class="venue-top">
+    <article class="game-card ${game.source === "ad" ? "is-sponsored" : ""}">
+      <div class="game-top">
         <div>
-          <h3>${escapeHtml(venue.name)}</h3>
           <div class="venue-meta">
-            <span>${escapeHtml(venue.facilityType)}</span>
-            <span>${formatDistance(venue.distance)}</span>
-            <span>${escapeHtml(venue.sportText)}</span>
+            <span>${escapeHtml(SPORT_OPTIONS[game.sport].label)}</span>
+            <span>${escapeHtml(game.format)}</span>
+            <span>${escapeHtml(game.level === "any" ? "любой уровень" : LEVEL_LABELS[game.level])}</span>
           </div>
+          <h3>${escapeHtml(game.title)}</h3>
         </div>
-        <span class="badge ${venue.score > 85 ? "green" : "blue"}">${venue.score}% матч</span>
+        <span class="badge ${game.missing <= 2 ? "green" : "blue"}">${game.score}% матч</span>
       </div>
-      <div class="venue-meta">${escapeHtml(venue.address)}</div>
-      <div>
-        ${sourceBadge}
-        ${coach}
-        ${selected ? '<span class="badge green">Ваша заявка</span>' : ""}
+
+      <div class="game-facts" aria-label="Параметры игры">
+        <div><strong>${escapeHtml(game.dateLabel)}</strong><span>дата</span></div>
+        <div><strong>${escapeHtml(game.time)}</strong><span>старт</span></div>
+        <div><strong>${game.joined}/${game.target}</strong><span>участники</span></div>
+        <div><strong>${game.missing}</strong><span>нужно ещё</span></div>
       </div>
+
       <div class="team-meter">
         <div class="team-row">
-          <strong>${escapeHtml(venue.groupName)}</strong>
-          <span>${venue.joined}/${venue.target}: ${missingText}</span>
+          <strong>${missingText}</strong>
+          <span>${escapeHtml(game.duration)} · ${game.price ? `${game.price} ₽` : "бесплатно"}</span>
         </div>
         <div class="meter-track" aria-hidden="true">
           <div class="meter-fill" style="width: ${filled}%"></div>
         </div>
         <div class="team-row">
-          <div class="avatar-stack">${venue.participants.slice(0, 5).map(renderAvatar).join("")}</div>
-          <span>${escapeHtml(state.request?.startsAt || venue.startsAt)}</span>
+          <div class="avatar-stack">${game.participants.slice(0, 5).map(renderAvatar).join("")}</div>
+          <span>${escapeHtml(game.venue)} · ${formatDistance(game.distance)}</span>
         </div>
       </div>
+
+      <div>
+        ${sourceBadge}
+        ${coach}
+        ${selected ? '<span class="badge green">Ваша заявка</span>' : ""}
+      </div>
+
+      <div class="venue-meta">${escapeHtml(game.address)}</div>
+
       <div class="venue-actions">
-        <button class="button button-primary" type="button" data-join="${escapeHtml(venue.id)}">
-          ${selected ? "Обновить заявку" : "Оформить заявку"}
+        <button class="button button-primary" type="button" data-join="${escapeHtml(game.id)}">
+          ${selected ? "Заявка оформлена" : "Хочу в игру"}
         </button>
-        <a class="button button-ghost" href="${escapeAttribute(venue.osmUrl)}" target="_blank" rel="noreferrer">OSM</a>
+        <a class="button button-ghost" href="${escapeAttribute(makeMapLink(game))}" target="_blank" rel="noreferrer">Карта</a>
       </div>
     </article>
   `;
@@ -722,74 +592,67 @@ function renderAvatar(person) {
 }
 
 function renderWeather() {
-  if (!state.weather) {
-    elements.weatherCard.textContent = "Погода недоступна";
+  if (!state.request) {
+    elements.weatherCard.textContent = "Подсказка появится после поиска";
     return;
   }
-  const date = new Date(state.weather.time);
-  elements.weatherCard.innerHTML = `
-    <strong>${formatDateTime(date)}</strong><br>
-    ${Math.round(state.weather.temperature)} °C,
-    осадки ${Math.round(state.weather.precipitation ?? 0)}%,
-    ветер ${Math.round(state.weather.wind ?? 0)} км/ч
-  `;
+  const best = state.games[0];
+  elements.weatherCard.innerHTML = best
+    ? `<strong>Лучший слот</strong><br>${escapeHtml(best.dateLabel)}, ${escapeHtml(best.time)} · ${best.joined}/${best.target}, нужно ещё ${best.missing}`
+    : "Подходящих игр пока нет";
 }
 
 function renderStatus() {
   const request = state.request;
-  const selectedVenue = state.venues.find((item) => item.id === state.selectedVenueId) || state.venues[0];
-  const hasResults = state.venues.length > 0;
-  const hasSelected = Boolean(state.selectedVenueId);
-  const teamMissing = selectedVenue?.missing ?? request?.teamSize ?? 0;
+  const selectedGame = state.games.find((item) => item.id === state.selectedGameId);
+  const suggestedGame = selectedGame || state.games[0];
+  const hasResults = state.games.length > 0;
+  const hasSelected = Boolean(selectedGame);
 
   const steps = [
     {
-      title: "Заявка",
+      title: "Запрос",
       body: request ? `${request.sportLabel}, ${request.date} ${request.time}` : "Выберите спорт, дату и район",
       state: request ? "done" : "active",
     },
     {
-      title: "Площадка",
-      body: hasResults ? `найдено вариантов: ${state.venues.length}` : "ищем объекты рядом",
+      title: "Игры",
+      body: hasResults ? `подобрано игр: ${state.games.length}` : "готовим моковую ленту",
       state: hasResults ? "done" : request ? "active" : "",
     },
     {
-      title: "Команда",
-      body: request?.needTeam
-        ? teamMissing > 0
-          ? `осталось собрать: ${formatPeople(teamMissing).toLowerCase()}`
+      title: "Место в составе",
+      body: suggestedGame
+        ? suggestedGame.missing > 0
+          ? `не хватает: ${formatPeople(suggestedGame.missing).toLowerCase()}`
           : "состав готов"
-        : "не требуется",
-      state: request?.needTeam ? (teamMissing > 0 ? "active" : "done") : "done",
+        : "выберите игру",
+      state: hasSelected ? "done" : hasResults ? "active" : "",
     },
     {
-      title: "Тренер",
-      body: request?.needCoach
-        ? selectedVenue?.coachName
-          ? `кандидат: ${selectedVenue.coachName}`
-          : "подбираем тренера"
-        : "не требуется",
-      state: request?.needCoach ? (selectedVenue?.coachName ? "done" : "active") : "done",
+      title: "Telegram",
+      body: state.telegram ? `${state.telegram} сохранён` : hasSelected ? "оставьте контакт для чата" : "появится после заявки",
+      state: state.telegram ? "done" : hasSelected ? "active" : "",
     },
     {
-      title: "Подтверждение",
-      body: hasSelected ? "заявка оформлена, ждём подтверждение площадки" : "выберите вариант",
-      state: hasSelected ? "active" : "",
+      title: "Чат игры",
+      body: state.telegram ? "в MVP имитируем добавление в чат" : "ждём Telegram",
+      state: state.telegram ? "active" : "",
     },
   ];
 
   elements.statusSteps.innerHTML = steps.map(renderStatusStep).join("");
 
-  if (!request) {
+  if (!request && !hasResults) {
     elements.participantStatus.innerHTML = "";
     document.querySelector(".status-panel h2").textContent = "Заявка ещё не запущена";
     return;
   }
 
   document.querySelector(".status-panel h2").textContent = hasSelected
-    ? "Поиск запущен"
-    : "Варианты подготовлены";
-  elements.participantStatus.innerHTML = renderParticipantRows(selectedVenue, request, hasSelected);
+    ? "Заявка на игру"
+    : "Игры подобраны";
+  elements.participantStatus.innerHTML = renderParticipantRows(suggestedGame, hasSelected);
 }
 
 function renderStatusStep(step, index) {
@@ -805,25 +668,33 @@ function renderStatusStep(step, index) {
   `;
 }
 
-function renderParticipantRows(venue, request, hasSelected) {
-  const venueName = venue?.name || "площадка ещё не выбрана";
-  const teamText = venue
-    ? venue.missing > 0
-      ? `не хватает ${formatPeople(venue.missing).toLowerCase()}`
-      : "состав готов"
-    : "ожидаем результаты";
-  const coachText = request.needCoach
-    ? venue?.coachName
-      ? `${venue.coachName} на подтверждении`
-      : "ищем тренера"
-    : "не нужен";
-
+function renderParticipantRows(game, hasSelected) {
+  if (!game) {
+    return "";
+  }
+  const contactText = state.telegram || "Telegram не указан";
   return `
-    <div class="participant-row"><strong>Вы</strong><span>${hasSelected ? "заявка оформлена" : "выбираете вариант"}</span></div>
-    <div class="participant-row"><strong>Команда</strong><span>${escapeHtml(teamText)}</span></div>
-    <div class="participant-row"><strong>Площадка</strong><span>${escapeHtml(venueName)}</span></div>
-    <div class="participant-row"><strong>Тренер</strong><span>${escapeHtml(coachText)}</span></div>
+    <div class="participant-row"><strong>Игра</strong><span>${escapeHtml(game.title)}</span></div>
+    <div class="participant-row"><strong>Участники</strong><span>${game.joined}/${game.target}, нужно ещё ${game.missing}</span></div>
+    <div class="participant-row"><strong>Площадка</strong><span>${escapeHtml(game.venue)}</span></div>
+    <div class="participant-row"><strong>Вы</strong><span>${hasSelected ? escapeHtml(contactText) : "выбираете игру"}</span></div>
   `;
+}
+
+function renderContactPanel() {
+  const game = state.games.find((item) => item.id === state.selectedGameId);
+  elements.contactPanel.hidden = !game;
+  if (!game) {
+    elements.contactSaved.textContent = "";
+    return;
+  }
+  elements.contactTitle.textContent = "Куда добавить вас в чат игры";
+  elements.contactSummary.textContent = `${game.title} · ${game.dateLabel}, ${game.time} · ${game.joined}/${game.target}`;
+  elements.telegramInput.value = state.telegram;
+  elements.contactSaved.textContent = state.telegram
+    ? `Telegram сохранён: ${state.telegram}.`
+    : "После отправки команда увидит ваш контакт в моковом статусе.";
+  elements.contactSaved.className = state.telegram ? "form-feedback is-success" : "form-feedback";
 }
 
 function updateMap(location) {
@@ -841,10 +712,8 @@ function updateMap(location) {
   elements.mapTitle.textContent = location.label;
 }
 
-function setLoading(isLoading) {
-  const submit = elements.form.querySelector("[type='submit']");
-  submit.disabled = isLoading;
-  submit.textContent = isLoading ? "Ищем..." : "Найти варианты";
+function makeMapLink(game) {
+  return `https://www.openstreetmap.org/?mlat=${game.lat}&mlon=${game.lon}#map=16/${game.lat}/${game.lon}`;
 }
 
 function setNotice(text, mode) {
@@ -852,56 +721,32 @@ function setNotice(text, mode) {
   elements.notice.className = `notice ${mode || ""}`.trim();
 }
 
-function fallbackVenueName(tags, request) {
-  if (tags.leisure === "fitness_centre") {
-    return "Фитнес-зал";
-  }
-  if (tags.leisure === "sports_centre") {
-    return "Спортивный центр";
-  }
-  if (tags.leisure === "track") {
-    return "Беговая дорожка";
-  }
-  return `${SPORT_OPTIONS[request.sport].label} рядом`;
+function makeParticipants(count, offset) {
+  return Array.from({ length: count }, (_, index) => {
+    const name = SAMPLE_NAMES[(index + offset) % SAMPLE_NAMES.length];
+    return {
+      name,
+      initials: name.slice(0, 1).toUpperCase(),
+    };
+  });
 }
 
-function readableFacility(tags) {
-  const leisure = tags.leisure;
-  if (leisure === "fitness_centre") {
-    return "Фитнес-центр";
-  }
-  if (leisure === "sports_centre") {
-    return "Спортивный центр";
-  }
-  if (leisure === "pitch") {
-    return "Спортивная площадка";
-  }
-  if (leisure === "stadium") {
-    return "Стадион";
-  }
-  if (leisure === "track") {
-    return "Беговая зона";
-  }
-  return "Спортивный объект";
+function parseSlotTime(slot) {
+  const match = slot.match(/([01]?\d|2[0-3]):([0-5]\d)/);
+  return match ? `${match[1].padStart(2, "0")}:${match[2]}` : "";
 }
 
-function readableSport(tags, request) {
-  const sport = String(tags.sport || "")
-    .split(/[;,]/)
-    .map((item) => item.trim())
-    .filter(Boolean)
-    .slice(0, 2)
-    .join(", ");
-  return sport || request.sportLabel || "Спорт";
+function parseDateInput(value) {
+  if (!value) {
+    return new Date();
+  }
+  const [year, month, day] = value.split("-").map(Number);
+  return new Date(year, month - 1, day);
 }
 
-function formatAddress(tags) {
-  const parts = [
-    tags["addr:street"],
-    tags["addr:housenumber"],
-    tags["addr:city"],
-  ].filter(Boolean);
-  return parts.join(", ") || tags.operator || tags.description || "Адрес уточняется по карте";
+function toMinutes(value) {
+  const [hours, minutes] = String(value || "00:00").split(":").map(Number);
+  return hours * 60 + minutes;
 }
 
 function distanceMeters(lat1, lon1, lat2, lon2) {
@@ -935,9 +780,7 @@ function formatPeople(count) {
   const last = value % 10;
   const lastTwo = value % 100;
   let word = "человек";
-  if (last === 1 && lastTwo !== 11) {
-    word = "человек";
-  } else if (last >= 2 && last <= 4 && (lastTwo < 12 || lastTwo > 14)) {
+  if (last >= 2 && last <= 4 && (lastTwo < 12 || lastTwo > 14)) {
     word = "человека";
   }
   return `${count} ${word}`;
@@ -950,12 +793,10 @@ function toDateInputValue(date) {
   return `${year}-${month}-${day}`;
 }
 
-function formatDateTime(date) {
+function formatShortDate(date) {
   return new Intl.DateTimeFormat("ru-RU", {
     day: "numeric",
     month: "short",
-    hour: "2-digit",
-    minute: "2-digit",
   }).format(date);
 }
 

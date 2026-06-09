@@ -1,12 +1,12 @@
 # Sport Grounds
 
-Static web prototype for finding a sports venue, teammates, and optionally a
+Static web prototype for finding a sports game, teammates, and optionally a
 coach nearby.
 
-The core user need: a person wants to play or train, but has no partner, team,
-or clear venue. The app lets them choose sport, date, time, location, and what
-they need to find. It then shows nearby sports facilities, team-fill status,
-coach status, and a simple promoted-slot flow for venue owners.
+The core user need: a person wants to play or train, but has no partner or
+team. The app lets them choose sport, date, time, location, and then shows games
+nearby. The main interface object is a game: sport, date, time, format, venue,
+participants, and how many people are still needed.
 
 ## Run
 
@@ -20,15 +20,12 @@ Open `http://localhost:4173/`.
 
 GitHub Pages: https://novikovakris.github.io/komanda-ryadom/
 
-## Real Free APIs
+## Data
 
-- OpenStreetMap Nominatim: user-triggered geocoding.
-- OpenStreetMap Overpass API: nearby sports venues.
-- Open-Meteo: hourly weather for the requested time and coordinates.
-
-For production, put geocoding behind a small cache/proxy and keep attribution
-visible to comply with public API policies. Nominatim is used only for explicit
-user searches and must not be used for autocomplete or bulk geocoding.
+The current prototype uses mock games only. There is no backend, no real
+application storage, and no real chat integration yet. After a user joins a
+game, the UI asks for a Telegram username and stores it locally in the browser
+to demonstrate the next step.
 
 ## Codex Layout
 

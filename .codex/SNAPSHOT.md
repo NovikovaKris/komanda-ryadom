@@ -4,17 +4,19 @@ Last updated: 2026-06-09
 
 ## Project State
 
-- This folder now contains a static web prototype for the Sport Grounds project.
+- This folder now contains a static game-search prototype for the Sport Grounds
+  project.
 - Git is initialized and connected to
   `https://github.com/NovikovaKris/komanda-ryadom`.
 - GitHub Pages is enabled at
   `https://novikovakris.github.io/komanda-ryadom/`.
-- The app helps users find a sport, nearby venue, team/company, and optional
+- The app helps users find a game, team/company, venue details, and optional
   coach for a selected date and time.
 - The app uses vanilla HTML/CSS/JS with no build step.
-- Real free browser APIs used: Nominatim, Overpass API, Open-Meteo.
-- There is no backend, payment flow, auth, booking integration, or real
-  participant database yet.
+- Current results are mocked games in `app.js`; no backend or real participant
+  database exists yet.
+- After joining a game, the UI asks for Telegram and stores it locally to
+  demonstrate chat handoff.
 
 ## Decisions
 
@@ -24,7 +26,8 @@ Last updated: 2026-06-09
 - Use `.agents/skills/` for repo-local Codex skills.
 - Use `.codex/agents/` for custom subagent profiles.
 - Keep the initial app static until a backend or persistence task is requested.
-- Monetization is represented as promoted venue slots added locally by the
+- Keep the main UI object as a game, not a venue.
+- Monetization is represented as promoted game slots added locally by the
   partner form.
 
 ## Open Questions
@@ -39,6 +42,6 @@ Last updated: 2026-06-09
 
 - Preview locally with `python3 -m http.server 4173`.
 - Publish updates with `git push`; GitHub Pages deploys from `main` and `/`.
-- Test geocoding and Overpass results from a browser over localhost.
+- Test the mocked game-search and Telegram handoff flow in a browser.
 - Decide whether to add backend persistence for applications, teams, coaches,
   and paid venue promotion.

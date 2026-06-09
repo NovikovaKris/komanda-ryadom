@@ -143,6 +143,7 @@ a {
 
 .search-panel,
 .status-panel,
+.contact-panel,
 .map-panel,
 .partner-panel {
   border: 1px solid var(--line);
@@ -153,6 +154,7 @@ a {
 
 .search-panel,
 .status-panel,
+.contact-panel,
 .partner-panel {
   padding: clamp(16px, 2vw, 22px);
 }
@@ -500,7 +502,7 @@ input[type="range"] {
   gap: 14px;
 }
 
-.venue-card {
+.game-card {
   display: grid;
   gap: 14px;
   min-width: 0;
@@ -511,19 +513,20 @@ input[type="range"] {
   box-shadow: 0 10px 32px rgba(20, 33, 29, 0.07);
 }
 
-.venue-card.is-sponsored {
+.game-card.is-sponsored {
   border-color: #e6bf75;
   background: #fffaf0;
 }
 
-.venue-top {
+.game-top {
   display: flex;
   justify-content: space-between;
   gap: 12px;
 }
 
-.venue-top h3 {
+.game-top h3 {
   margin-bottom: 6px;
+  margin-top: 8px;
 }
 
 .venue-meta {
@@ -560,6 +563,33 @@ input[type="range"] {
 .badge.coral {
   color: #7a2c1c;
   background: #ffece6;
+}
+
+.game-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.game-facts div {
+  display: grid;
+  gap: 3px;
+  min-height: 68px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfa;
+}
+
+.game-facts strong {
+  font-size: 17px;
+  line-height: 1.1;
+}
+
+.game-facts span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .team-meter {
@@ -622,6 +652,35 @@ input[type="range"] {
 
 .venue-actions .button {
   min-height: 42px;
+}
+
+.telegram-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.telegram-form .field {
+  margin-bottom: 0;
+}
+
+.form-feedback {
+  min-height: 20px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.form-feedback.is-success {
+  color: var(--green-dark);
+  font-weight: 700;
+}
+
+.form-feedback.is-error {
+  color: #7a2c1c;
+  font-weight: 700;
 }
 
 .partner-form {
@@ -687,6 +746,7 @@ input[type="range"] {
   .left-rail,
   .field-grid,
   .results-list,
+  .game-facts,
   .partner-form {
     grid-template-columns: 1fr;
   }
@@ -707,9 +767,10 @@ input[type="range"] {
     height: 360px;
   }
 
-  .venue-top,
+  .game-top,
   .team-row,
-  .venue-actions {
+  .venue-actions,
+  .telegram-form {
     grid-template-columns: 1fr;
     flex-direction: column;
     align-items: stretch;
